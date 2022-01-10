@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareKnowledgeAPI", "ShareKnowledgeAPI\ShareKnowledgeAPI.csproj", "{77F7E144-A191-4A0F-AE45-5B23A0B9929F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77F7E144-A191-4A0F-AE45-5B23A0B9929F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F7E144-A191-4A0F-AE45-5B23A0B9929F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F7E144-A191-4A0F-AE45-5B23A0B9929F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F7E144-A191-4A0F-AE45-5B23A0B9929F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B6850DE-A099-402F-9615-40DE3CD0DC7E}
+	EndGlobalSection
+EndGlobal
