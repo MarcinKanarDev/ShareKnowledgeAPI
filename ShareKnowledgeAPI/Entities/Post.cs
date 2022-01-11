@@ -5,7 +5,7 @@ namespace ShareKnowledgeAPI.Entities
     public class Post
     {
         [Key]
-        public int PostId { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(100)]
         public string Title { get; set; }
@@ -15,7 +15,7 @@ namespace ShareKnowledgeAPI.Entities
 
         //Relationships
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
 
     }
 }
