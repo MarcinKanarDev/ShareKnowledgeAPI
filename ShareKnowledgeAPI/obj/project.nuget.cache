@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "DrPHYkQp3P2XpavzzZrbyZla377Kx1az4PcF7wvFPvzVBR1wCVY2rnpjEQtv5vPbG0jH5dQLlBngY+wEegSnPQ==",
+  "dgSpecHash": "DxsC8ryiWs5cDRSbW5EleJUkMdSsBLzpjq+FOlG7aGwyU4dePFD/Et75JECsfXw5gB0izIqNHLkWMKsiOZ/LHg==",
   "success": true,
   "projectFilePath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.1\\microsoft.aspnetcore.jsonpatch.6.0.1.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.1\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.1.nupkg.sha512",

@@ -53,7 +53,7 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult UpdatePost([FromRoute] int id)
+        public ActionResult DeletePost([FromRoute] int id)
         {
             if (_postService.DeletePost(id).Result == false)
                 return NotFound();

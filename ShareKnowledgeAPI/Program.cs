@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Implementation;
+using ShareKnowledgeAPI.Mapper;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 
@@ -22,8 +23,13 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("ShareKnowledgeApi")));
 
+//Services
 builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<DataSeeder>();
+
+//add mapper service
+builder.Services.AddAutoMapper(typeof(ApplicationMappingProfile));
 
 var app = builder.Build();
 
