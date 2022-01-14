@@ -11,6 +11,7 @@ namespace ShareKnowledgeAPI.Entities
         public int Brains { get; set; }
 
         //Relationship
+        public int PostId { get; set; }
         public virtual Post Post { get; set; }
     }
 }

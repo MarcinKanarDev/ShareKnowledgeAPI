@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Implementation;
 using ShareKnowledgeAPI.Mapper;
+using ShareKnowledgeAPI.Middleware;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 
@@ -18,6 +19,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+//Add custom Middlewares
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 //Database context service
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -39,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
+using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 
@@ -36,11 +37,11 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePost([FromBody] Post post)
+        public ActionResult CreatePost([FromBody] CreatePostDto postDto)
         {
-            var id = _postService.CreatePost(post).Result;
+            var id = _postService.CreatePost(postDto).Result;
 
-            return Created($"api/post/{id}", null);
+            return Created($"api/Post/{id}", null);
         }
 
         [HttpPut("{id}")]

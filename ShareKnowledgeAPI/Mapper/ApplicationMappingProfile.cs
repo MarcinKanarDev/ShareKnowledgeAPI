@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ShareKnowledgeAPI.Entities;
+using ShareKnowledgeAPI.Mapper.DTOs;
 
 namespace ShareKnowledgeAPI.Mapper
 {
@@ -6,7 +8,13 @@ namespace ShareKnowledgeAPI.Mapper
     {
         public ApplicationMappingProfile()
         {
+            CreateMap<Post, PostDto>();
+            
+            CreateMap<Comment, CommentDto>();
+            
+            CreateMap<Category, CategoryDto>();
 
+            CreateMap<CreatePostDto, Post>();
         }
     }
 }
