@@ -2,73 +2,45 @@
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Services;
-using System.ComponentModel.Design;
 
 namespace ShareKnowledgeAPI.Implementation
 {
     public class CategoryService : ICategoryService
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CategoryService(ApplicationDbContext dbContext) 
+        public CategoryService(ApplicationDbContext applicatioDbContext)
         {
-            _context = dbContext;
+            _context = applicatioDbContext;
         }
 
-        public async Task<int> CreateCategory(Category category)
+        public Task<int> CreateCategory(Category category)
         {
-            await _context.Categories.AddAsync(category);
-            await _context.SaveChangesAsync();
-
-            return category.Id;
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteCategory(int categoryId)
+        public Task<bool> DeleteCategory(int categoryId)
         {
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(c => c.Id == categoryId);
-
-            if (category is null)
-                return false;
-
-            _context.Remove(category);
-            await _context.SaveChangesAsync();
-
-            return true;
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Category> GetAll()
+        public async Task<IEnumerable<Category>> GetAll()
         {
-            var categories = _context.Categories
-                .ToList();
+            var categories = await _context.Categories
+                .Include(p => p.Posts)
+                .ToListAsync();
 
             return categories;
         }
 
-        public async Task<Category> GetCategoryById(int categoryId)
+        public Task<Category> GetCategoryById(int categoryId)
         {
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(c => c.Id == categoryId);
-
-            if (category is null)
-                return null;
-
-            return category;
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateCategory(Category category)
+        public Task<bool> UpdateCategory(Category category)
         {
-            var categoryFromDb = await _context.Categories
-                .FirstOrDefaultAsync(p => p.Id == category.Id);
-
-            if (categoryFromDb is null)
-                return false;
-
-            categoryFromDb.CategoryName = category.CategoryName;
-
-            await _context.SaveChangesAsync();
-
-            return true;
+            throw new NotImplementedException();
         }
     }
 }

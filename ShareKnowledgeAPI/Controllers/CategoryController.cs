@@ -1,12 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShareKnowledgeAPI.Services;
 
 namespace ShareKnowledgeAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly ICategoryService _service;
+
+        public CategoryController(ICategoryService categoryService)
         {
-            return Ok();
+            _service = categoryService;
+        }
+
+        [HttpGet]
+        public ActionResult GetAll() 
+        {
+            var result = _service.GetAll().Result;
+
+            return Ok(result);
         }
     }
 }

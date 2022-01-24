@@ -8,13 +8,20 @@ namespace ShareKnowledgeAPI.Mapper
     {
         public ApplicationMappingProfile()
         {
+            //Post profiles
             CreateMap<Post, PostDto>();
-            
-            CreateMap<Comment, CommentDto>();
-            
-            CreateMap<Category, CategoryDto>();
-
             CreateMap<CreatePostDto, Post>();
+               
+
+            //Comment profiles
+            CreateMap<Comment, CommentDto>();
+            CreateMap<CreateCommentDto, Comment>();
+            
+            //Catrgory profiles
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>();
+
+
         }
     }
 }

@@ -1,26 +1,35 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
+using ShareKnowledgeAPI.Exceptions;
+using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
 
 namespace ShareKnowledgeAPI.Implementation
 {
     public class CommentService : ICommentService
     {
+        private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
 
-        public CommentService(ApplicationDbContext dbContext) 
+        public CommentService(ApplicationDbContext dbContext, IMapper mapper) 
         {
+            _mapper = mapper;
             _context = dbContext;
         }
 
-        public async Task<int> CreateComment(Comment comment)
-{
-            await _context.Comments.AddAsync(comment);
+        public async Task<int> CreateComment(int postId, CreateCommentDto commentDto)
+        {
+            var commentEntity = _mapper.Map<Comment>(commentDto);
+
+            commentEntity.PostId = postId;
+
+            await _context.Comments.AddAsync(commentEntity);
             await _context.SaveChangesAsync();
 
-            return comment.Id;
+            return commentEntity.Id;
         }
 
         public async Task<bool> DeleteComment(int commentId)
@@ -37,23 +46,27 @@ namespace ShareKnowledgeAPI.Implementation
             return true;
         }
 
-        public IEnumerable<Comment> GetAll()
+        public IEnumerable<CommentDto> GetAll()
         {
             var comments = _context.Comments
                 .ToList();
 
-            return comments;
+            var commentDtos = _mapper.Map<List<CommentDto>>(comments);
+
+            return commentDtos;
         }
 
-        public async Task<Comment> GetCommentById(int commentId)
+        public async Task<CommentDto> GetCommentById(int commentId)
         {
             var comment = await _context.Comments
                 .FirstOrDefaultAsync(c => c.Id == commentId);
 
             if (comment is null)
-                return null;
+                throw new NotFoundException("Comment not found");
+
+            var commentDto = _mapper.Map<CommentDto>(comment);          
                     
-            return comment;
+            return commentDto;
         }
 
         public async Task<bool> UpdateComment(Comment comment)

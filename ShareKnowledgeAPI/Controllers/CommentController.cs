@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Implementation;
+using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
 
 namespace ShareKnowledgeAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/post/{postId}/comment")]
     [ApiController]
     public class CommentController : ControllerBase
     {
@@ -35,11 +36,11 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateComment([FromBody] Comment comment)
+        public ActionResult CreateComment([FromRoute]int postId,  [FromBody]CreateCommentDto commentDto)
         {
-            var id = _commentService.CreateComment(comment).Result;
+            var id = _commentService.CreateComment(postId, commentDto).Result;
 
-            return Created($"api/Comment/{id}", null);
+            return Created($"api/post/{postId}/comment/{id}", null);
         }
 
         [HttpPut("{id}")]

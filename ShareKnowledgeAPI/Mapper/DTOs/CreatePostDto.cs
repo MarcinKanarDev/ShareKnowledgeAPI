@@ -4,10 +4,10 @@ namespace ShareKnowledgeAPI.Mapper.DTOs
 {
     public class CreatePostDto
     {
-        [Required]
-        [MaxLength(100)]
-        public string Title { get; set; }
-        [Required]
-        public string Description { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+
+        public List<CategoryDto>? CategoryDtos { get; set; }
+
     }
 }

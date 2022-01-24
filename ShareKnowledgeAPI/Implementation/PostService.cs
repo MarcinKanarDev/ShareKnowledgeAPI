@@ -47,7 +47,10 @@ namespace ShareKnowledgeAPI.Implementation
 
         public async Task<int> CreatePost(CreatePostDto postDto)
         {
+            var categories = _mapper.Map<List<Category>>(postDto.CategoryDtos);
+                       
             var post = _mapper.Map<Post>(postDto);
+            post.Categories = categories;
 
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync();

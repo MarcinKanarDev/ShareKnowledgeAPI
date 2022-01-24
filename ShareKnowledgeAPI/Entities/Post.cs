@@ -8,14 +8,14 @@ namespace ShareKnowledgeAPI.Entities
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public int Brains { get; set; }
 
         //Relationships
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Comment>? Comments { get; set; }
+        public virtual ICollection<Category>? Categories { get; set; }
 
     }
 }

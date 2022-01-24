@@ -47,7 +47,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdatePost([FromBody] Post post)
         {
-            if (_postService.UpdatePost(post).Result == false)
+            _postService.UpdatePost(post);
                 return BadRequest();
 
             return Ok();
@@ -56,9 +56,8 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeletePost([FromRoute] int id)
         {
-            if (_postService.DeletePost(id).Result == false)
-                return NotFound();
-
+            _postService.DeletePost(id);
+            
             return NoContent();
         }
 

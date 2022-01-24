@@ -4,7 +4,7 @@ namespace ShareKnowledgeAPI.Services
 {
     public interface ICategoryService
     {
-        IEnumerable<Category> GetAll();
+        Task<IEnumerable<Category>> GetAll();
         Task<int> CreateCategory(Category category);
         Task<bool> UpdateCategory(Category category);
         Task<bool> DeleteCategory(int categoryId);
