@@ -5,10 +5,10 @@ namespace ShareKnowledgeAPI.Services
 {
     public interface IPostService
     {
-        IEnumerable<PostDto> GetAll();
-        Task<int> CreatePost(CreatePostDto createPostDto);
-        Task UpdatePost(Post post);
-        Task DeletePost(int postId);
-        Task<PostDto> GetPostById(int postId);
+        Task<IEnumerable<PostDto>> GetAllPostsAsync();
+        Task<int> CreatePostAsync(CreatePostDto createPostDto);
+        Task UpdatePostAsync(Post post);
+        Task DeletePostAsync(int postId);
+        Task<PostDto> GetPostByIdAsync(int postId);
     }
 }

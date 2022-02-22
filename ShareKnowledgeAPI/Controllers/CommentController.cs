@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
-using ShareKnowledgeAPI.Implementation;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
 
@@ -40,12 +39,8 @@ namespace ShareKnowledgeAPI.Controllers
         public ActionResult UpdateComment([FromRoute]int postId, [FromRoute]int commentId,
             [FromBody] UpdateCommentDto updateCommentDto)
         {
-            if (_commentService
-                .UpdateCommentFromPostAsync(updateCommentDto, postId, commentId)
-                .Result == false) 
-            {
-                return BadRequest();
-            }
+            _commentService
+                .UpdateCommentFromPostAsync(updateCommentDto, postId, commentId);
                 
             return Ok();
         }
@@ -53,15 +48,10 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
         {
-            if (_commentService
-                .DeleteCommentFromPostAsync(postId, commentId)
-                .Result == false) 
-            {
-                return NotFound();
-            }
-                
+            _commentService
+                .DeleteCommentFromPostAsync(postId, commentId);
+      
             return NoContent();
         }
-
     }
 }

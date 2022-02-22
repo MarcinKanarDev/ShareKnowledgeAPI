@@ -20,32 +20,32 @@ namespace ShareKnowledgeAPI.Implementation
             _context = dbContext;
         }
 
-        public IEnumerable<PostDto> GetAll()
+        public async Task<IEnumerable<PostDto>> GetAllPostsAsync()
         {
-            var posts = _context.Posts
+            var posts = await _context.Posts
                 .Include(p => p.Comments)
                 .Include(p => p.Categories)
-                .ToList();
+                .ToListAsync();
 
             var postDtos = _mapper.Map<IEnumerable<PostDto>>(posts);
 
             return postDtos;
         }
 
-        public async Task<PostDto> GetPostById(int postId)
+        public async Task<PostDto> GetPostByIdAsync(int postId)
         {
             var post = await _context.Posts.
                 FirstOrDefaultAsync(p => p.Id == postId);
 
             if (post is null)
-                throw new NotFoundException($"Resource wih Id = {postId} not found");
+                throw new NotFoundException($"Post not found");
 
             var postDto = _mapper.Map<PostDto>(post);
 
             return postDto;
         }
 
-        public async Task<int> CreatePost(CreatePostDto postDto)
+        public async Task<int> CreatePostAsync(CreatePostDto postDto)
         {
             var categories = _mapper.Map<List<Category>>(postDto.CategoryDtos);
                        
@@ -58,25 +58,25 @@ namespace ShareKnowledgeAPI.Implementation
             return post.Id;
         }
 
-        public async Task DeletePost(int postId)
+        public async Task DeletePostAsync(int postId)
         {
-            var post = _context.Posts.
-                FirstOrDefault(p => p.Id == postId);
+            var post = await _context.Posts.
+                FirstOrDefaultAsync(p => p.Id == postId);
 
             if (post is null)
-                throw new NotFoundException($"Resource wih Id = {postId} not found");
+                throw new NotFoundException($"Post not found");
 
             _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
         }
       
-        public async Task UpdatePost(Post post)
+        public async Task UpdatePostAsync(Post post)
         {
             var postFromDb = await _context.Posts
                 .FirstOrDefaultAsync(p => p.Id == post.Id);
 
             if (postFromDb is null)
-                throw new NotFoundException($"Resource wih Id = {post.Id} not found");
+                throw new NotFoundException($"Post not found");
 
             postFromDb.Title = post.Title;
             postFromDb.Description = post.Description;

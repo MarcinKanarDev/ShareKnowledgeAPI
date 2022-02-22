@@ -20,7 +20,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpGet]
         public ActionResult GetAll() 
         {
-            var result = _postService.GetAll();
+            var result = _postService.GetAllPostsAsync();
 
             return Ok(result);
         }
@@ -28,10 +28,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult GetPostById([FromRoute] int id)
         {
-            var result = _postService.GetPostById(id).Result;
-
-            if (result is null)
-                return NotFound();
+            var result = _postService.GetPostByIdAsync(id).Result;
 
             return Ok(result);
         }
@@ -39,7 +36,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpPost]
         public ActionResult CreatePost([FromBody] CreatePostDto postDto)
         {
-            var id = _postService.CreatePost(postDto).Result;
+            var id = _postService.CreatePostAsync(postDto).Result;
 
             return Created($"api/Post/{id}", null);
         }
@@ -47,8 +44,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdatePost([FromBody] Post post)
         {
-            _postService.UpdatePost(post);
-                return BadRequest();
+            _postService.UpdatePostAsync(post);
 
             return Ok();
         }
@@ -56,7 +52,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeletePost([FromRoute] int id)
         {
-            _postService.DeletePost(id);
+            _postService.DeletePostAsync(id);
             
             return NoContent();
         }

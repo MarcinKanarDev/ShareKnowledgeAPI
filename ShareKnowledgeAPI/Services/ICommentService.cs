@@ -7,7 +7,7 @@ namespace ShareKnowledgeAPI.Services
     {
         Task <IEnumerable<CommentDto>> GetAllCommentsFromPostAsync(int postId);
         Task<int> CreateCommentToPostAsync(int postId, CreateCommentDto commentDto);
-        Task<bool> UpdateCommentFromPostAsync(UpdateCommentDto updateCommentDto, int postId, int commentId);
-        Task<bool> DeleteCommentFromPostAsync(int postId, int commentId);
+        Task UpdateCommentFromPostAsync(UpdateCommentDto updateCommentDto, int postId, int commentId);
+        Task DeleteCommentFromPostAsync(int postId, int commentId);
     }
 }

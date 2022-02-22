@@ -32,7 +32,7 @@ namespace ShareKnowledgeAPI.Implementation
             return commentEntity.Id;
         }
 
-        public async Task<bool> DeleteCommentFromPostAsync(int postId, int commentId)
+        public async Task DeleteCommentFromPostAsync(int postId, int commentId)
         {
             var post = await _context.Posts
                 .Include(p => p.Comments)
@@ -49,8 +49,6 @@ namespace ShareKnowledgeAPI.Implementation
 
             _context.Remove(commentToDelete);
             await _context.SaveChangesAsync();
-
-            return true;
         }
 
         public async Task <IEnumerable<CommentDto>> GetAllCommentsFromPostAsync(int postId)
@@ -67,7 +65,7 @@ namespace ShareKnowledgeAPI.Implementation
             return commentDtos;
         }
 
-        public async Task<bool> UpdateCommentFromPostAsync(UpdateCommentDto updateCommentDto, int postId, int commentId)
+        public async Task UpdateCommentFromPostAsync(UpdateCommentDto updateCommentDto, int postId, int commentId)
         {
             var postFromDb = await _context.Posts
                 .Include(p => p.Comments)
@@ -85,8 +83,6 @@ namespace ShareKnowledgeAPI.Implementation
             commentsFromPost.CommentText = updateCommentDto.CommentText;
             
             await _context.SaveChangesAsync();
-
-            return true;
         }
     }
 }
