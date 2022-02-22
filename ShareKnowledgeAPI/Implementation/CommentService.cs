@@ -20,7 +20,7 @@ namespace ShareKnowledgeAPI.Implementation
             _context = dbContext;
         }
 
-        public async Task<int> CreateComment(int postId, CreateCommentDto commentDto)
+        public async Task<int> CreateCommentToPostAsync(int postId, CreateCommentDto commentDto)
         {
             var commentEntity = _mapper.Map<Comment>(commentDto);
 
@@ -32,53 +32,57 @@ namespace ShareKnowledgeAPI.Implementation
             return commentEntity.Id;
         }
 
-        public async Task<bool> DeleteComment(int commentId)
+        public async Task<bool> DeleteCommentFromPostAsync(int postId, int commentId)
         {
-            var comment = await _context.Comments
-                .FirstOrDefaultAsync(c => c.Id == commentId);
+            var post = await _context.Posts
+                .Include(p => p.Comments)
+                .FirstOrDefaultAsync(p => p.Id == postId);
 
-            if (comment is null)
-                return false;
+            if (post is null)
+                throw new NotFoundException("Post not found.");
 
-            _context.Remove(comment);
+            var commentToDelete = post.Comments
+                .FirstOrDefault(c => c.Id == commentId);
+
+            if (commentToDelete is null)
+                throw new NotFoundException("Comment not found");
+
+            _context.Remove(commentToDelete);
             await _context.SaveChangesAsync();
 
             return true;
         }
 
-        public IEnumerable<CommentDto> GetAll()
+        public async Task <IEnumerable<CommentDto>> GetAllCommentsFromPostAsync(int postId)
         {
-            var comments = _context.Comments
-                .ToList();
+            var post = await _context.Posts
+                .Include(p => p.Comments)
+                .FirstOrDefaultAsync(p => p.Id == postId);
 
-            var commentDtos = _mapper.Map<List<CommentDto>>(comments);
+            if (post is null)
+                throw new NotFoundException("Post not found.");
+
+            var commentDtos = _mapper.Map<List<CommentDto>>(post.Comments);
 
             return commentDtos;
         }
 
-        public async Task<CommentDto> GetCommentById(int commentId)
+        public async Task<bool> UpdateCommentFromPostAsync(UpdateCommentDto updateCommentDto, int postId, int commentId)
         {
-            var comment = await _context.Comments
-                .FirstOrDefaultAsync(c => c.Id == commentId);
+            var postFromDb = await _context.Posts
+                .Include(p => p.Comments)
+                .FirstOrDefaultAsync(p => p.Id == postId);
 
-            if (comment is null)
-                throw new NotFoundException("Comment not found");
+            if (postFromDb is null)
+                throw new NotFoundException("Post not found.");
 
-            var commentDto = _mapper.Map<CommentDto>(comment);          
-                    
-            return commentDto;
-        }
+            var commentsFromPost = postFromDb.Comments
+                .FirstOrDefault(c => c.Id == commentId);
 
-        public async Task<bool> UpdateComment(Comment comment)
-        {
-            var commentFromDb = await _context.Comments
-                .FirstOrDefaultAsync(p => p.Id == comment.Id);
+            if (commentsFromPost is null)
+                throw new NotFoundException("Comment not found.");
 
-            if (commentFromDb is null)
-                return false;
-
-            commentFromDb.CommentText = comment.CommentText;
-            commentFromDb.Brains = comment.Brains;
+            commentsFromPost.CommentText = updateCommentDto.CommentText;
             
             await _context.SaveChangesAsync();
 

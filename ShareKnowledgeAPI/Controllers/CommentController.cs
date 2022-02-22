@@ -16,48 +16,50 @@ namespace ShareKnowledgeAPI.Controllers
         {
             _commentService = commentService;
         }
+        
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll([FromRoute]int postId)
         {
-            var result = _commentService.GetAll();
-
-            return Ok(result);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult GetCommentById([FromRoute] int id)
-        {
-            var result = _commentService.GetCommentById(id).Result;
-
-            if (result is null)
-                return NotFound();
+            var result = _commentService
+                .GetAllCommentsFromPostAsync(postId);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreateComment([FromRoute]int postId,  [FromBody]CreateCommentDto commentDto)
+        public ActionResult CreateComment([FromRoute]int postId, [FromBody]CreateCommentDto commentDto)
         {
-            var id = _commentService.CreateComment(postId, commentDto).Result;
+            var id = _commentService
+                .CreateCommentToPostAsync(postId, commentDto)
+                .Result;
 
             return Created($"api/post/{postId}/comment/{id}", null);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateComment([FromBody] Comment comment)
+        [HttpPut("{commentId}")]
+        public ActionResult UpdateComment([FromRoute]int postId, [FromRoute]int commentId,
+            [FromBody] UpdateCommentDto updateCommentDto)
         {
-            if (_commentService.UpdateComment(comment).Result == false)
+            if (_commentService
+                .UpdateCommentFromPostAsync(updateCommentDto, postId, commentId)
+                .Result == false) 
+            {
                 return BadRequest();
-
+            }
+                
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletePost([FromRoute] int id)
+        public ActionResult DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
         {
-            if (_commentService.DeleteComment(id).Result == false)
+            if (_commentService
+                .DeleteCommentFromPostAsync(postId, commentId)
+                .Result == false) 
+            {
                 return NotFound();
-
+            }
+                
             return NoContent();
         }
 
