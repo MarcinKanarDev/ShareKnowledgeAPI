@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "lqir0R+tP4YGhERSHWGC5CnLpo/9hipYEPMy8ui95UnFwP0zuDQpGT58FbZ2CoUzMgW91n3YkAc7U6wORoFRpg==",
+  "dgSpecHash": "8qjSkHddKZBt/wDKCoXuddlt7vd2641EzgDjWObcjyk07KN0SszAK6HPGx7YE5QUhfJ7M6xiIQWEDvE9FJQQkQ==",
   "success": true,
   "projectFilePath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Abachaczi\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.1\\microsoft.aspnetcore.jsonpatch.6.0.1.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.1\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.1.nupkg.sha512",

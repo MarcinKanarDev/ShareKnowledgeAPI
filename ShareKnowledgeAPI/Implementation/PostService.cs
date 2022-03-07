@@ -4,7 +4,6 @@ using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Exceptions;
 using ShareKnowledgeAPI.Mapper.DTOs;
-using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 
 namespace ShareKnowledgeAPI.Implementation

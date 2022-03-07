@@ -67,3 +67,4 @@ D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\A
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\NLog.dll
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\FluentValidation.dll
