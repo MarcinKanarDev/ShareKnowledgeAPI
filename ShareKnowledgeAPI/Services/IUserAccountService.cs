@@ -7,5 +7,6 @@ namespace ShareKnowledgeAPI.Services
     {
         void RegisterUser(UserRegisterDto userRegisterDto);
         string GenerateJwt(LoginDto loginDto);
+        IEnumerable<User> GetAll();
     }
 }

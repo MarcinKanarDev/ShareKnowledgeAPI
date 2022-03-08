@@ -10,7 +10,7 @@
         public DateTime DateOfBirth { get; set; }
 
         public int PermissionId { get; set; }
-        public Permission Permission { get; set; }
+        public virtual Permission Permission { get; set; }
 
     }
 }

@@ -30,5 +30,13 @@ namespace ShareKnowledgeAPI.Controllers
 
             return Ok(token);
         }
+
+        [HttpGet]
+        public ActionResult GetAll() 
+        {
+            var result = _userAccountService.GetAll();
+
+            return Ok(result);
+        }
     }
 }

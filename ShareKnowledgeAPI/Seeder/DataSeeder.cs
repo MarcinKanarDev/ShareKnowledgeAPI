@@ -21,7 +21,32 @@ namespace ShareKnowledgeAPI.Seeder
                 _context.Posts.AddRange(posts);
                 _context.SaveChanges();
             }
-        }           
+
+            if (!_context.Permissions.Any())
+            {
+                var permissions = GetPermissions();
+                _context.Permissions.AddRange(permissions);
+                _context.SaveChanges();
+            }
+        }
+
+        private IEnumerable<Permission> GetPermissions() 
+        {
+            var permissions = new List<Permission>()
+            {
+
+                new Permission
+                {
+                    PermissionName = "Admin"
+                },
+                new Permission 
+                {
+                    PermissionName = "User"
+                }
+            };
+
+            return permissions;
+        }
 
         private IEnumerable<Post> GetPosts() 
         {

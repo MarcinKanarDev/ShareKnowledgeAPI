@@ -20,7 +20,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpGet]
         public ActionResult GetAll() 
         {
-            var result = _postService.GetAllPostsAsync();
+            var result = _postService.GetAllPostsAsync().Result;
 
             return Ok(result);
         }

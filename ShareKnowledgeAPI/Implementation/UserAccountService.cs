@@ -67,6 +67,18 @@ namespace ShareKnowledgeAPI.Implementation
             return tokenHandler.WriteToken(token);
         }
 
+        public IEnumerable<User> GetAll()
+        {
+            var users = _context.Users.ToList();
+
+            if (users is null) 
+            {
+                throw new NotFoundException("Users is empty");
+            }
+
+            return users;
+        }
+
         public void RegisterUser(UserRegisterDto userRegisterDto)
         {
             var newUser = new User

@@ -1,10 +1,16 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ShareKnowledgeAPI.Authentication;
 using ShareKnowledgeAPI.Database;
+using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Implementation;
 using ShareKnowledgeAPI.Mapper;
 using ShareKnowledgeAPI.Middleware;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +26,29 @@ builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+// Add authentication settings
+var authenticationSettings = new AuthenticationSettings();
+
+configuration.GetSection("Authentication").Bind(authenticationSettings);
+
+builder.Services.AddSingleton(authenticationSettings);
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultAuthenticateScheme = "Bearer";
+    option.DefaultScheme = "Bearer";
+    option.DefaultChallengeScheme = "Bearer";
+}).AddJwtBearer(cfg =>
+{
+    cfg.RequireHttpsMetadata = false;
+    cfg.SaveToken = true;
+    cfg.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = authenticationSettings.JwtIssuer,
+        ValidAudience = authenticationSettings.JwtIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
+    };
+});
+
 //Add custom Middlewares
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
@@ -31,6 +60,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+//Add password hasher to the container
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<DataSeeder>();
 
 //add mapper service

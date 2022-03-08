@@ -20,7 +20,7 @@ namespace ShareKnowledgeAPI.Controllers
         public ActionResult GetAll([FromRoute]int postId)
         {
             var result = _commentService
-                .GetAllCommentsFromPostAsync(postId);
+                .GetAllCommentsFromPostAsync(postId).Result;
 
             return Ok(result);
         }
