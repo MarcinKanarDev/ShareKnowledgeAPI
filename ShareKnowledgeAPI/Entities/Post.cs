@@ -12,6 +12,9 @@ namespace ShareKnowledgeAPI.Entities
         [Required]
         public string? Description { get; set; }
         public int Brains { get; set; }
+       
+        public int? CreatedById { get; set; }
+        public virtual User CreatedBy { get; set; }
 
         //Relationships
         public virtual ICollection<Comment>? Comments { get; set; }

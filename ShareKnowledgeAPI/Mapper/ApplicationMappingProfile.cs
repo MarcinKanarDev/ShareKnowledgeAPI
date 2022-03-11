@@ -17,11 +17,9 @@ namespace ShareKnowledgeAPI.Mapper
             CreateMap<Comment, CommentDto>();
             CreateMap<CreateCommentDto, Comment>();
             
-            //Catrgory profiles
+            //Category profiles
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
-
-
         }
     }
 }

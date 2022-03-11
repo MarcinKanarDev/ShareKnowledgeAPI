@@ -10,7 +10,12 @@ namespace ShareKnowledgeAPI.Middleware
             {
                 await next.Invoke(context);
             }
-            catch (NotFoundException notFound) 
+            catch (ForbidException forbidException) 
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync(forbidException.Message);
+            }
+            catch (NotFoundException notFound)
             {
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(notFound.Message);

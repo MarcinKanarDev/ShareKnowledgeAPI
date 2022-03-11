@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "D4TR2ReUBcnqLAprc7z+YgePcJdKke9aXeUJmMz8SBa1lYhtba/PQJB1b2TZ2nEJLarY7U+lFAuzPLm4SIUvyg==",
+  "dgSpecHash": "Zo34+4yPgZoffTGBX5/utkbnGbC9MDB2tyOw3gcnEBeWoX7rma6UZhZGnwppbIsPuy+8V8kHnka0u/fDILghfw==",
   "success": true,
   "projectFilePath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Abachaczi\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
+    "C:\\Users\\Abachaczi\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.2\\microsoft.aspnetcore.authentication.jwtbearer.6.0.2.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.1\\microsoft.aspnetcore.jsonpatch.6.0.1.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
@@ -36,6 +37,7 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPut("{commentId}")]
+        [Authorize(Roles = "User")]
         public ActionResult UpdateComment([FromRoute]int postId, [FromRoute]int commentId,
             [FromBody] UpdateCommentDto updateCommentDto)
         {
@@ -45,7 +47,9 @@ namespace ShareKnowledgeAPI.Controllers
             return Ok();
         }
 
+        
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
         {
             _commentService

@@ -69,3 +69,5 @@ D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\N
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\FluentValidation.dll
 D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+D:\C#\SHARE KNOWLEDGE API\ShareKnowledgeAPI\ShareKnowledgeAPI\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

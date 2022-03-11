@@ -1,16 +1,21 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ShareKnowledgeAPI.Authentication;
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Implementation;
 using ShareKnowledgeAPI.Mapper;
+using ShareKnowledgeAPI.Mapper.DTOs;
+using ShareKnowledgeAPI.Validators;
 using ShareKnowledgeAPI.Middleware;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 using System.Text;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using ShareKnowledgeAPI.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +23,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,6 +50,7 @@ builder.Services.AddAuthentication(option =>
     {
         ValidIssuer = authenticationSettings.JwtIssuer,
         ValidAudience = authenticationSettings.JwtIssuer,
+        RequireExpirationTime = false,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
     };
 });
@@ -61,9 +67,17 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddHttpContextAccessor();
 //Add password hasher to the container
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<DataSeeder>();
+
+//Add Authorization
+builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+
+//Add Validator to the container
+builder.Services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
 
 //add mapper service
 builder.Services.AddAutoMapper(typeof(ApplicationMappingProfile));
@@ -78,6 +92,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

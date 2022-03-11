@@ -12,6 +12,6 @@ namespace ShareKnowledgeAPI.Mapper.DTOs
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public int PermissionId { get; set; } = 1;
+        public int PermissionId { get; set; } = 2;
     }
 }

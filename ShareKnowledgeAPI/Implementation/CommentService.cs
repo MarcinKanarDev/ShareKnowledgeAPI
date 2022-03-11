@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+using ShareKnowledgeAPI.Authorization;
 using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Exceptions;
@@ -11,11 +12,16 @@ namespace ShareKnowledgeAPI.Implementation
 {
     public class CommentService : ICommentService
     {
+        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserContextService _userContextService;
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
 
-        public CommentService(ApplicationDbContext dbContext, IMapper mapper) 
+        public CommentService(ApplicationDbContext dbContext, IMapper mapper, 
+            IAuthorizationService authorizationService, IUserContextService userContextService) 
         {
+            _authorizationService = authorizationService;
+            _userContextService = userContextService;
             _mapper = mapper;
             _context = dbContext;
         }
@@ -47,6 +53,14 @@ namespace ShareKnowledgeAPI.Implementation
             if (commentToDelete is null)
                 throw new NotFoundException("Comment not found");
 
+            var authorizeResult = _authorizationService.AuthorizeAsync(_userContextService.User, commentToDelete,
+                new ResourceOperationRequirement(ResourceOperation.Delete)).Result;
+
+            if (!authorizeResult.Succeeded) 
+            {
+                throw new ForbidException("You don't have an access to this resorce.");
+            }
+
             _context.Remove(commentToDelete);
             await _context.SaveChangesAsync();
         }
@@ -74,13 +88,21 @@ namespace ShareKnowledgeAPI.Implementation
             if (postFromDb is null)
                 throw new NotFoundException("Post not found.");
 
-            var commentsFromPost = postFromDb.Comments
+            var commentFromPost = postFromDb.Comments
                 .FirstOrDefault(c => c.Id == commentId);
 
-            if (commentsFromPost is null)
+            if (commentFromPost is null)
                 throw new NotFoundException("Comment not found.");
 
-            commentsFromPost.CommentText = updateCommentDto.CommentText;
+            var authorizeResult = _authorizationService.AuthorizeAsync(_userContextService.User, commentFromPost,
+                new ResourceOperationRequirement(ResourceOperation.Update)).Result;
+
+            if (!authorizeResult.Succeeded) 
+            {
+                throw new ForbidException("You don't have an access to this resorce.");
+            }
+
+            commentFromPost.CommentText = updateCommentDto.CommentText;
             
             await _context.SaveChangesAsync();
         }
