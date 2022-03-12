@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
 

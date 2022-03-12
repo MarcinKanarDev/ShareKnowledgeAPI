@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Mapper.DTOs;
+using ShareKnowledgeAPI.Models;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 using System.Security.Claims;
@@ -22,9 +23,9 @@ namespace ShareKnowledgeAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<IEnumerable<PostDto>> GetAll([FromQuery] string searchPhrase) 
+        public ActionResult<IEnumerable<PostDto>> GetAll([FromQuery]PostQuery query) 
         {
-            var result = _postService.GetAllPostsAsync(searchPhrase).Result;
+            var result = _postService.GetAllPostsAsync(query).Result;
 
             return Ok(result);
         }

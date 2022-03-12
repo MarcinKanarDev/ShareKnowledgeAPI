@@ -16,6 +16,7 @@ using System.Text;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using ShareKnowledgeAPI.Authorization;
+using ShareKnowledgeAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,8 +77,9 @@ builder.Services.AddScoped<DataSeeder>();
 //Add Authorization
 builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
 
-//Add Validator to the container
+//Add Validators to the container
 builder.Services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
+builder.Services.AddScoped<IValidator<PostQuery>, PostQueryValidator>();
 
 //add mapper service
 builder.Services.AddAutoMapper(typeof(ApplicationMappingProfile));

@@ -6,6 +6,7 @@ using ShareKnowledgeAPI.Database;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Exceptions;
 using ShareKnowledgeAPI.Mapper.DTOs;
+using ShareKnowledgeAPI.Models;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 using System.Security.Claims;
@@ -30,15 +31,18 @@ namespace ShareKnowledgeAPI.Implementation
             _userContextService = contextService;
         }
 
-        public async Task<IEnumerable<PostDto>> GetAllPostsAsync(string searchPhrase)
+        public async Task<IEnumerable<PostDto>> GetAllPostsAsync(PostQuery query)
         {
             _dataSeeder.SeedData();
 
             var posts = await _context.Posts
                 .Include(p => p.Comments)
                 .Include(p => p.Categories)
-                .Where(p => searchPhrase == null || (p.Title.ToLower().Contains(searchPhrase.ToLower()) 
-                        || p.Description.ToLower().Contains(searchPhrase.ToLower())))
+                .Where(p => query.SearchPhrase == null || 
+                    (p.Title.ToLower().Contains(query.SearchPhrase.ToLower()) 
+                        || p.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                .Skip(query.PageSize * (query.PageNumber - 1))
+                .Take(query.PageSize)
                 .ToListAsync();
 
             var postDtos = _mapper.Map<IEnumerable<PostDto>>(posts);
