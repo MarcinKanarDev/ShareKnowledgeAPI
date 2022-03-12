@@ -56,6 +56,14 @@ builder.Services.AddAuthentication(option =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontEndClient", builder =>
+        builder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins(configuration["AllowedOrigins"])
+    );
+});
 //Add custom Middlewares
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
@@ -87,6 +95,7 @@ builder.Services.AddAutoMapper(typeof(ApplicationMappingProfile));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("FrontEndClient");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
