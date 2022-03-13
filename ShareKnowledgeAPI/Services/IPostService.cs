@@ -7,7 +7,7 @@ namespace ShareKnowledgeAPI.Services
 {
     public interface IPostService
     {
-        Task<IEnumerable<PostDto>> GetAllPostsAsync(PostQuery query);
+        Task<IEnumerable<PostDto>> GetAllPostsAsync(Query query);
         Task<int> CreatePostAsync(CreatePostDto createPostDto);
         Task UpdatePostAsync(UpdatePostDto updatePostDto, int id);
         Task DeletePostAsync(int postId);

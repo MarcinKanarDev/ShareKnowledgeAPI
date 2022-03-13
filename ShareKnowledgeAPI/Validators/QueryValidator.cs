@@ -3,10 +3,10 @@ using ShareKnowledgeAPI.Models;
 
 namespace ShareKnowledgeAPI.Validators
 {
-    public class PostQueryValidator : AbstractValidator<PostQuery>
+    public class QueryValidator : AbstractValidator<Query>
     {
         private int[] possiblePageSize = new[] { 5, 10, 15, 30 };
-        public PostQueryValidator()
+        public QueryValidator()
         {
             RuleFor(p => p.PageNumber).GreaterThanOrEqualTo(1);
             RuleFor(p => p.PageSize).Custom((value, context) =>

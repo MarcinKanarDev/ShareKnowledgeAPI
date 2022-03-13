@@ -1,6 +1,6 @@
 ﻿namespace ShareKnowledgeAPI.Models
 {
-    public class PostQuery
+    public class Query
     {
         public string? SearchPhrase { get; set; }
         public int PageSize { get; set; }

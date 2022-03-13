@@ -21,26 +21,26 @@ namespace ShareKnowledgeAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<IEnumerable<PostDto>> GetAllPosts([FromQuery]PostQuery query) 
+        public async Task<ActionResult> GetAllPosts([FromQuery]Query query) 
         {
-            var result = _postService.GetAllPostsAsync(query).Result;
+            var result = await _postService.GetAllPostsAsync(query);
 
             return Ok(result);
         }
         
         [HttpGet("{id}")]
         [Authorize(Roles = "Admin")]
-        public ActionResult GetPostById([FromRoute] int id)
+        public async Task<ActionResult> GetPostById([FromRoute] int id)
         {
-            var result = _postService.GetPostByIdAsync(id).Result;
+            var result = await _postService.GetPostByIdAsync(id);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreatePost([FromBody] CreatePostDto postDto)
+        public async Task<ActionResult> CreatePost([FromBody] CreatePostDto postDto)
         {   
-            var id = _postService.CreatePostAsync(postDto).Result;
+            var id = _postService.CreatePostAsync(postDto);
 
             return Created($"api/Post/{id}", null);
         }

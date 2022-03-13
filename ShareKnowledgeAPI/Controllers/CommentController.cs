@@ -17,30 +17,31 @@ namespace ShareKnowledgeAPI.Controllers
         }
         
         [HttpGet]
-        public ActionResult GetAll([FromRoute]int postId)
+        [Authorize(Roles = "Admin, User")]
+        public async Task<ActionResult> GetAll([FromRoute]int postId)
         {
-            var result = _commentService
-                .GetAllCommentsFromPostAsync(postId).Result;
+            var result = await _commentService
+                .GetAllCommentsFromPostAsync(postId);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreateComment([FromRoute]int postId, [FromBody]CreateCommentDto commentDto)
+        [Authorize(Roles = "Admin, User")]
+        public async Task<ActionResult> CreateComment([FromRoute]int postId, [FromBody]CreateCommentDto commentDto)
         {
-            var id = _commentService
-                .CreateCommentToPostAsync(postId, commentDto)
-                .Result;
+            var id = await _commentService
+                .CreateCommentToPostAsync(postId, commentDto);
 
             return Created($"api/post/{postId}/comment/{id}", null);
         }
 
         [HttpPut("{commentId}")]
         [Authorize(Roles = "User")]
-        public ActionResult UpdateComment([FromRoute]int postId, [FromRoute]int commentId,
+        public async Task<ActionResult> UpdateComment([FromRoute]int postId, [FromRoute]int commentId,
             [FromBody] UpdateCommentDto updateCommentDto)
         {
-            _commentService
+            await _commentService
                 .UpdateCommentFromPostAsync(updateCommentDto, postId, commentId);
                 
             return Ok();
@@ -49,9 +50,9 @@ namespace ShareKnowledgeAPI.Controllers
         
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin, User")]
-        public ActionResult DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
+        public async Task<ActionResult> DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
         {
-            _commentService
+            await _commentService
                 .DeleteCommentFromPostAsync(postId, commentId);
       
             return NoContent();

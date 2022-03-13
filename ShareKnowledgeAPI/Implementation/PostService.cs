@@ -9,7 +9,7 @@ using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Models;
 using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
-using System.Security.Claims;
+
 
 namespace ShareKnowledgeAPI.Implementation
 {
@@ -31,7 +31,7 @@ namespace ShareKnowledgeAPI.Implementation
             _userContextService = contextService;
         }
 
-        public async Task<IEnumerable<PostDto>> GetAllPostsAsync(PostQuery query)
+        public async Task<IEnumerable<PostDto>> GetAllPostsAsync(Query query)
         {
             _dataSeeder.SeedData();
 

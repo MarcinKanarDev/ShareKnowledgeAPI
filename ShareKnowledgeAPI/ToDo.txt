@@ -1,2 +1,0 @@
-﻿1. Dodac kontrolery komentarzy i Kategorii
-2. dodac mapowanie DTO

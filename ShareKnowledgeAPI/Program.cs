@@ -87,7 +87,7 @@ builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHa
 
 //Add Validators to the container
 builder.Services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
-builder.Services.AddScoped<IValidator<PostQuery>, PostQueryValidator>();
+builder.Services.AddScoped<IValidator<Query>, QueryValidator>();
 builder.Services.AddScoped<IValidator<CreatePostDto>, CreatePostValidator>();
 
 //add mapper service
