@@ -11,6 +11,7 @@ namespace ShareKnowledgeAPI.Mapper
             //Post profiles
             CreateMap<Post, PostDto>();
             CreateMap<CreatePostDto, Post>();
+            CreateMap<UpdatePostDto, PostDto>();
                
 
             //Comment profiles
@@ -20,6 +21,8 @@ namespace ShareKnowledgeAPI.Mapper
             //Category profiles
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
+
+
         }
     }
 }

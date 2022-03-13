@@ -14,33 +14,11 @@ namespace ShareKnowledgeAPI.Implementation
             _context = applicatioDbContext;
         }
 
-        public Task<int> CreateCategory(Category category)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeleteCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Category>> GetAll()
         {
-            var categories = await _context.Categories
-                .Include(p => p.Posts)
-                .ToListAsync();
+            var categories = await _context.Categories.ToListAsync();
 
             return categories;
-        }
-
-        public Task<Category> GetCategoryById(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateCategory(Category category)
-        {
-            throw new NotImplementedException();
         }
     }
 }

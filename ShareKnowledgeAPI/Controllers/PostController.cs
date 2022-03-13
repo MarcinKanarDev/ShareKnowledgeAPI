@@ -3,14 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Models;
-using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
-using System.Security.Claims;
 
 namespace ShareKnowledgeAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin, User")]
+    [Authorize(Roles = "User, Admin")]
     [ApiController]
     public class PostController : ControllerBase
     {
@@ -23,7 +21,7 @@ namespace ShareKnowledgeAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult<IEnumerable<PostDto>> GetAll([FromQuery]PostQuery query) 
+        public ActionResult<IEnumerable<PostDto>> GetAllPosts([FromQuery]PostQuery query) 
         {
             var result = _postService.GetAllPostsAsync(query).Result;
 
@@ -31,7 +29,7 @@ namespace ShareKnowledgeAPI.Controllers
         }
         
         [HttpGet("{id}")]
-        [Authorize(Roles = "User, Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult GetPostById([FromRoute] int id)
         {
             var result = _postService.GetPostByIdAsync(id).Result;
@@ -40,7 +38,6 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User, Admin")]
         public ActionResult CreatePost([FromBody] CreatePostDto postDto)
         {   
             var id = _postService.CreatePostAsync(postDto).Result;
@@ -49,22 +46,19 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "User, Admin")]
-        public ActionResult UpdatePost([FromBody] Post post)
+        public async Task<ActionResult> UpdatePost([FromBody] UpdatePostDto updatePostDto, [FromRoute] int id)
         {
-            _postService.UpdatePostAsync(post);
+            await _postService.UpdatePostAsync(updatePostDto, id);
 
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "User, Admin")]
         public async Task<ActionResult> DeletePost([FromRoute] int id)
         {
             await _postService.DeletePostAsync(id);
             
             return NoContent();
         }
-
     }
 }

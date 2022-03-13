@@ -9,7 +9,7 @@ namespace ShareKnowledgeAPI.Services
     {
         Task<IEnumerable<PostDto>> GetAllPostsAsync(PostQuery query);
         Task<int> CreatePostAsync(CreatePostDto createPostDto);
-        Task UpdatePostAsync(Post post);
+        Task UpdatePostAsync(UpdatePostDto updatePostDto, int id);
         Task DeletePostAsync(int postId);
         Task<PostDto> GetPostByIdAsync(int postId);
     }

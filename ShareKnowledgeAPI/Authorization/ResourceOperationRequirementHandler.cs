@@ -11,7 +11,8 @@ namespace ShareKnowledgeAPI.Authorization
             ResourceOperationRequirement requirement, Post post)
         {
             if (requirement.ResourceOperation == ResourceOperation.Read ||
-                requirement.ResourceOperation == ResourceOperation.Create) 
+                requirement.ResourceOperation == ResourceOperation.Create
+                ) 
             {
                 context.Succeed(requirement);
             }

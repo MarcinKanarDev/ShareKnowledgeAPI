@@ -97,10 +97,10 @@ namespace ShareKnowledgeAPI.Implementation
             await _context.SaveChangesAsync();
         }
       
-        public async Task UpdatePostAsync(Post post)
+        public async Task UpdatePostAsync(UpdatePostDto updatePostDto, int id)
         {
             var postFromDb = await _context.Posts
-                .FirstOrDefaultAsync(p => p.Id == post.Id);
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (postFromDb is null)
                 throw new NotFoundException($"Post not found");
@@ -113,11 +113,8 @@ namespace ShareKnowledgeAPI.Implementation
                 throw new ForbidException("You don't have an access to this resorce.");
             }
 
-            postFromDb.Title = post.Title;
-            postFromDb.Description = post.Description;
-            postFromDb.Brains = post.Brains;
-            postFromDb.Comments = post.Comments;
-            postFromDb.Categories = post.Categories;
+            postFromDb.Title = updatePostDto.Title;
+            postFromDb.Description = updatePostDto?.Description;
             
             await _context.SaveChangesAsync();
         }

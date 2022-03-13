@@ -88,6 +88,7 @@ builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHa
 //Add Validators to the container
 builder.Services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
 builder.Services.AddScoped<IValidator<PostQuery>, PostQueryValidator>();
+builder.Services.AddScoped<IValidator<CreatePostDto>, CreatePostValidator>();
 
 //add mapper service
 builder.Services.AddAutoMapper(typeof(ApplicationMappingProfile));
@@ -113,3 +114,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program 
+{ }
