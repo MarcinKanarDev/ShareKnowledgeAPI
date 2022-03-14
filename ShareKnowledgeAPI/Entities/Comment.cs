@@ -7,6 +7,9 @@ namespace ShareKnowledgeAPI.Entities
         public int Id { get; set; }
         public string CommentText { get; set; }
 
+        public int? CreatedById { get; set; }
+        public virtual User CreatedBy { get; set; }
+
         public int PostId { get; set; }
         public virtual Post Post { get; set; }
     }

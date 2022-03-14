@@ -18,7 +18,6 @@ namespace ShareKnowledgeAPI.Tests
         {
             var claimsPrincipal = new ClaimsPrincipal();
 
-            //Musimy dodać claimy  ponieważ autentykacja z nich korzysta (IdentityUser)
             claimsPrincipal.AddIdentity(new ClaimsIdentity(
                 new[]
                 {

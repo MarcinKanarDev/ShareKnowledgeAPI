@@ -31,6 +31,7 @@ namespace ShareKnowledgeAPI.Implementation
             var commentEntity = _mapper.Map<Comment>(commentDto);
 
             commentEntity.PostId = postId;
+            commentEntity.CreatedById = _userContextService.GetUserId;
 
             await _context.Comments.AddAsync(commentEntity);
             await _context.SaveChangesAsync();

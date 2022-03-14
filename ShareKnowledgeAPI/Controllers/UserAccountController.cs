@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Services;
 
@@ -32,6 +33,7 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles="Admin")]
         public ActionResult GetAll() 
         {
             var result = _userAccountService.GetAll();

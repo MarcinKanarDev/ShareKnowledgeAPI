@@ -4,22 +4,22 @@ using System.Security.Claims;
 
 namespace ShareKnowledgeAPI.Authorization
 {
-    public class ResourceOperationRequirementHandler
-            : AuthorizationHandler<ResourceOperationRequirement, Post>
+    public class CommentOperationRequirementHandler
+        : AuthorizationHandler<ResourceOperationRequirement, Comment>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
-            ResourceOperationRequirement requirement, Post post)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+            ResourceOperationRequirement requirement, Comment comment)
         {
             if (requirement.ResourceOperation == ResourceOperation.Read ||
                 requirement.ResourceOperation == ResourceOperation.Create
-                ) 
+                )
             {
                 context.Succeed(requirement);
             }
 
             var userId = context.User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-            if (post.CreatedById == int.Parse(userId)) 
+            if (comment.CreatedById == int.Parse(userId))
             {
                 context.Succeed(requirement);
             }

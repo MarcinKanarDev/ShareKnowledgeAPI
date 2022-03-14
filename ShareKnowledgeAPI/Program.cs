@@ -76,12 +76,14 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserAccountService, UserAccountService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddHttpContextAccessor();
 //Add password hasher to the container
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 //Add Authorization
-builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, PostOperationRequirementHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, CommentOperationRequirementHandler>();
 
 //Add Validators to the container
 builder.Services.AddScoped<IValidator<UserRegisterDto>, UserRegisterValidator>();
