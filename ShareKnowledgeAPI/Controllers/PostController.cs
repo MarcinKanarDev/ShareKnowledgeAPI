@@ -40,7 +40,7 @@ namespace ShareKnowledgeAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> CreatePost([FromBody] CreatePostDto postDto)
         {   
-            var id = _postService.CreatePostAsync(postDto);
+            var id = await _postService.CreatePostAsync(postDto);
 
             return Created($"api/Post/{id}", null);
         }

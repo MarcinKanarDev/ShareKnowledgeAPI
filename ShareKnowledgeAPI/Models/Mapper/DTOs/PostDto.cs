@@ -7,7 +7,6 @@ namespace ShareKnowledgeAPI.Mapper.DTOs
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Brains { get; set; }
 
         public List<CommentDto> Comments { get; set; }
         public List<CategoryDto> Categories { get; set; }

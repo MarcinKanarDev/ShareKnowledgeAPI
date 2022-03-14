@@ -7,7 +7,6 @@ using ShareKnowledgeAPI.Entities;
 using ShareKnowledgeAPI.Exceptions;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Models;
-using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 
 
@@ -15,26 +14,22 @@ namespace ShareKnowledgeAPI.Implementation
 {
     public class PostService : IPostService
     {
+        private readonly IUserContextService _userContextService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
-        private readonly IUserContextService _userContextService;
-        private readonly DataSeeder _dataSeeder;
 
-        public PostService(ApplicationDbContext dbContext, IMapper mapper, DataSeeder dataSeeder,
+        public PostService(ApplicationDbContext dbContext, IMapper mapper,
             IAuthorizationService authorizationService, IUserContextService contextService) 
         {
             _authorizationService = authorizationService;
             _mapper = mapper;
-            _dataSeeder = dataSeeder;
             _context = dbContext;
             _userContextService = contextService;
         }
 
         public async Task<IEnumerable<PostDto>> GetAllPostsAsync(Query query)
         {
-            _dataSeeder.SeedData();
-
             var posts = await _context.Posts
                 .Include(p => p.Comments)
                 .Include(p => p.Categories)

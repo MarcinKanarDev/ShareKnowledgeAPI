@@ -18,15 +18,13 @@ namespace ShareKnowledgeAPI.Implementation
     {
         private readonly AuthenticationSettings _authenticationSettings;
         private readonly IPasswordHasher<User> _passwordHasher;
-        private readonly IMapper _mapper;
         private readonly ApplicationDbContext _context;
 
-        public UserAccountService(ApplicationDbContext dbContext, IMapper mapper,
+        public UserAccountService(ApplicationDbContext dbContext,
             IPasswordHasher<User> passwordHasher, AuthenticationSettings authentication)
         {
             _authenticationSettings = authentication;
             _passwordHasher = passwordHasher;
-            _mapper = mapper;
             _context = dbContext;
         }
 
@@ -54,7 +52,6 @@ namespace ShareKnowledgeAPI.Implementation
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
                 new Claim(ClaimTypes.Role, $"{user.Permission.PermissionName}"),
-                new Claim(ClaimTypes.DateOfBirth, $"{user.DateOfBirth.ToString()}")
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
@@ -72,15 +69,10 @@ namespace ShareKnowledgeAPI.Implementation
         {
             var users = _context.Users.ToList();
 
-            if (users is null) 
-            {
-                throw new NotFoundException("Users is empty");
-            }
-
             return users;
         }
 
-        public void RegisterUser(UserRegisterDto userRegisterDto)
+        public async Task RegisterUser(UserRegisterDto userRegisterDto)
         {
             var newUser = new User
             {
@@ -94,8 +86,8 @@ namespace ShareKnowledgeAPI.Implementation
             var hashedPassword = _passwordHasher.HashPassword(newUser, userRegisterDto.Password);
 
             newUser.HashedPassword = hashedPassword;
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(newUser);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -10,7 +10,6 @@ using ShareKnowledgeAPI.Mapper;
 using ShareKnowledgeAPI.Mapper.DTOs;
 using ShareKnowledgeAPI.Validators;
 using ShareKnowledgeAPI.Middleware;
-using ShareKnowledgeAPI.Seeder;
 using ShareKnowledgeAPI.Services;
 using System.Text;
 using FluentValidation.AspNetCore;
@@ -80,7 +79,6 @@ builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddHttpContextAccessor();
 //Add password hasher to the container
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-builder.Services.AddScoped<DataSeeder>();
 
 //Add Authorization
 builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();

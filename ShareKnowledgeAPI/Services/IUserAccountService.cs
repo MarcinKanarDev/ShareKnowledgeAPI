@@ -5,7 +5,7 @@ namespace ShareKnowledgeAPI.Services
 {
     public interface IUserAccountService
     {
-        void RegisterUser(UserRegisterDto userRegisterDto);
+        Task RegisterUser(UserRegisterDto userRegisterDto);
         string GenerateJwt(LoginDto loginDto);
         IEnumerable<User> GetAll();
     }

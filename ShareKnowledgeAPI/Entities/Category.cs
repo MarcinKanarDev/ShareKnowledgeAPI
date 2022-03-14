@@ -7,7 +7,6 @@ namespace ShareKnowledgeAPI.Entities
         public int Id { get; set; }
         public string CategoryName { get; set; }
 
-        //Relationship
         public ICollection<Post> Posts  { get; set; }
     }
 }
