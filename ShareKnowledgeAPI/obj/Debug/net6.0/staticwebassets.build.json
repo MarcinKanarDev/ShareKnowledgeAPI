@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "9rbUECuKpKghf/fmexphDegXCZJfnYBOJU5kXWPtVAY=",
+  "Hash": "7+UZMZHTSjOwENrFVcc+jQfuo/3N452iDIAEb+MYPuY=",
   "Source": "ShareKnowledgeAPI",
   "BasePath": "_content/ShareKnowledgeAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ShareKnowledgeAPI\\wwwroot",
+      "Source": "ShareKnowledgeAPI",
+      "ContentRoot": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\wwwroot\\",
+      "BasePath": "_content/ShareKnowledgeAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\wwwroot\\UserImages\\3ff7ef47-c239-465b-b392-5bf21975e784_doggo.jpg",
+      "SourceId": "ShareKnowledgeAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\wwwroot\\",
+      "BasePath": "_content/ShareKnowledgeAPI",
+      "RelativePath": "UserImages/3ff7ef47-c239-465b-b392-5bf21975e784_doggo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserImages\\3ff7ef47-c239-465b-b392-5bf21975e784_doggo.jpg"
+    },
+    {
+      "Identity": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\wwwroot\\UserImages\\a2108769-714a-4572-879e-f6f9a5e8acc0_doggo.jpg",
+      "SourceId": "ShareKnowledgeAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\wwwroot\\",
+      "BasePath": "_content/ShareKnowledgeAPI",
+      "RelativePath": "UserImages/a2108769-714a-4572-879e-f6f9a5e8acc0_doggo.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserImages\\a2108769-714a-4572-879e-f6f9a5e8acc0_doggo.jpg"
+    }
+  ]
 }

@@ -66,8 +66,10 @@ namespace ShareKnowledgeAPI.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public async Task <IEnumerable<CommentDto>> GetAllCommentsFromPostAsync(int postId)
+        public async Task<IEnumerable<CommentDto>> GetAllCommentsFromPostAsync(int postId)
         {
+            var posts = _context.Posts.ToList();
+
             var post = await _context.Posts
                 .Include(p => p.Comments)
                 .FirstOrDefaultAsync(p => p.Id == postId);

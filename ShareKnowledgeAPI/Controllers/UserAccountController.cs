@@ -17,10 +17,10 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult Register([FromBody] UserRegisterDto registerDto)
+        public ActionResult Register([FromForm] UserRegisterDto registerDto)
         {
             _userAccountService.RegisterUser(registerDto);
-
+            
             return Ok();
         }
 

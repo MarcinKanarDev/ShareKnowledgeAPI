@@ -48,7 +48,7 @@ namespace ShareKnowledgeAPI.Controllers
         }
 
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{commentId}")]
         [Authorize(Roles = "Admin, User")]
         public async Task<ActionResult> DeleteComment([FromRoute] int postId, [FromRoute] int commentId )
         {

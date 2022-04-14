@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -19,13 +20,15 @@ namespace ShareKnowledgeAPI.Implementation
         private readonly AuthenticationSettings _authenticationSettings;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public UserAccountService(ApplicationDbContext dbContext,
-            IPasswordHasher<User> passwordHasher, AuthenticationSettings authentication)
+        public UserAccountService(ApplicationDbContext dbContext, IPasswordHasher<User> passwordHasher, 
+            AuthenticationSettings authentication, IWebHostEnvironment webHostEnvironment)
         {
             _authenticationSettings = authentication;
             _passwordHasher = passwordHasher;
             _context = dbContext;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public string GenerateJwt(LoginDto loginDto)
@@ -74,6 +77,8 @@ namespace ShareKnowledgeAPI.Implementation
 
         public async Task RegisterUser(UserRegisterDto userRegisterDto)
         {
+            var userImageUri = UploadedFile(userRegisterDto);
+
             var newUser = new User
             {
                 Email = userRegisterDto.Email,
@@ -81,6 +86,7 @@ namespace ShareKnowledgeAPI.Implementation
                 LastName = userRegisterDto.LastName,
                 DateOfBirth = userRegisterDto.DateOfBirth,
                 PermissionId = userRegisterDto.PermissionId,
+                UserImageUri = userImageUri
             };
 
             var hashedPassword = _passwordHasher.HashPassword(newUser, userRegisterDto.Password);
@@ -88,6 +94,24 @@ namespace ShareKnowledgeAPI.Implementation
             newUser.HashedPassword = hashedPassword;
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
+        }
+
+        private string UploadedFile(UserRegisterDto userRegisterDto)
+        {
+            string uniqueImageFileName = null;
+
+            if (userRegisterDto.UserImage is not null)
+{
+                string uploadsDir = Path.Combine(_webHostEnvironment.WebRootPath, "UserImages");
+                uniqueImageFileName = Guid.NewGuid().ToString() + "_" + userRegisterDto.UserImage.FileName;
+                string imagePath = Path.Combine(uploadsDir, uniqueImageFileName);
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    userRegisterDto.UserImage.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueImageFileName;
         }
     }
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareKnowledgeAPI", "ShareKnowledgeAPI\ShareKnowledgeAPI.csproj", "{77F7E144-A191-4A0F-AE45-5B23A0B9929F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareKnowledgeAPI.Tests", "ShareKnowledgeAPI.Tests\ShareKnowledgeAPI.Tests.csproj", "{5E31BA2F-ADAA-4408-B36F-E16F63C24155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareKnowledgeAPI.Tests", "ShareKnowledgeAPI.Tests\ShareKnowledgeAPI.Tests.csproj", "{5E31BA2F-ADAA-4408-B36F-E16F63C24155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
