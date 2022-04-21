@@ -22,7 +22,8 @@ namespace ShareKnowledgeAPI.Tests
                 new[]
                 {
                     new Claim(ClaimTypes.NameIdentifier, "1"),
-                    new Claim(ClaimTypes.Role, "Admin")
+                    new Claim(ClaimTypes.Role, "Admin"),
+                    new Claim(ClaimTypes.Role, "User")
                 }));
 
             var ticket = new AuthenticationTicket(claimsPrincipal, "Test");

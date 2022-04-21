@@ -19,7 +19,8 @@ namespace ShareKnowledgeAPI.Tests
                 new[]
                 {
                     new Claim(ClaimTypes.NameIdentifier, "1"),
-                    new Claim(ClaimTypes.Role, "Admin")
+                    new Claim(ClaimTypes.Role, "Admin User"),
+                    new Claim(ClaimTypes.Role, "User")
                 }));
 
             context.HttpContext.User = claimsPrincipal;

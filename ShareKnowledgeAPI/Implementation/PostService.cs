@@ -64,7 +64,7 @@ namespace ShareKnowledgeAPI.Implementation
                        
             var post = _mapper.Map<Post>(postDto);
             post.Categories = categories;
-            post.CreatedById = _userContextService.GetUserId;
+            post.CreatedById = (int)_userContextService.GetUserId;
            
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync();

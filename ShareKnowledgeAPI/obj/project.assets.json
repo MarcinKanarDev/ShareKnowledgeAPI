@@ -2514,11 +2514,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
+      "projectUniqueName": "D:\\Programowanie\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
       "projectName": "ShareKnowledgeAPI",
-      "projectPath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
+      "projectPath": "D:\\Programowanie\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
       "packagesPath": "C:\\Users\\Abachaczi\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\obj\\",
+      "outputPath": "D:\\Programowanie\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

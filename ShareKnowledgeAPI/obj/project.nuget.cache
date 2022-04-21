@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zo34+4yPgZoffTGBX5/utkbnGbC9MDB2tyOw3gcnEBeWoX7rma6UZhZGnwppbIsPuy+8V8kHnka0u/fDILghfw==",
+  "dgSpecHash": "M/OeXQ0aQ61bCm8wX4U/bR6x3y8x/hJCPJPK2WRz/rGHn69DlJbzjwsfvzTwaI65YTj6C0zmYzGsS3ueTkVdZA==",
   "success": true,
-  "projectFilePath": "D:\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
+  "projectFilePath": "D:\\Programowanie\\C#\\SHARE KNOWLEDGE API\\ShareKnowledgeAPI\\ShareKnowledgeAPI\\ShareKnowledgeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Abachaczi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

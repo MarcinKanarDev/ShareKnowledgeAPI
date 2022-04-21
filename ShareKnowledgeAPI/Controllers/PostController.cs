@@ -45,6 +45,7 @@ namespace ShareKnowledgeAPI.Controllers
             return Created($"api/Post/{id}", null);
         }
 
+
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdatePost([FromBody] UpdatePostDto updatePostDto, [FromRoute] int id)
         {

@@ -28,6 +28,13 @@ namespace ShareKnowledgeAPI.Implementation
 
         public async Task<int> CreateCommentToPostAsync(int postId, CreateCommentDto commentDto)
         {
+            var postFromDb = _context.Posts.FirstOrDefault(p => p.Id == postId);
+
+            if (postFromDb is null) 
+            {
+                throw new NotFoundException("Post not found");
+            }
+
             var commentEntity = _mapper.Map<Comment>(commentDto);
 
             commentEntity.PostId = postId;

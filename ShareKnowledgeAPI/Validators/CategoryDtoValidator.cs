@@ -10,6 +10,8 @@ namespace ShareKnowledgeAPI.Validators
             RuleFor(c => c.CategoryName).MaximumLength(100)
                 .NotEmpty()
                 .NotNull();
+
+
         }
     }
 }

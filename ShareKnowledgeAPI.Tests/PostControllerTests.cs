@@ -50,11 +50,9 @@ namespace ShareKnowledgeAPI.Tests
         public async Task GetAllPosts_WithValidQueryParameters_ReturnsOkStatusCode(string queryParams)
         {
             //Act
-
             var response = await _client.GetAsync("/api/Post?" + queryParams);
-
+            
             //Assert
-
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
         }
 
@@ -65,11 +63,9 @@ namespace ShareKnowledgeAPI.Tests
         public async Task GetAllPosts_WithInValidQueryParameters_ReturnsBadRequestStatusCode(string queryParams)
         {
             //Act
-
             var response = await _client.GetAsync("/api/Post?" + queryParams);
 
             //Assert
-
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
         }
 
@@ -90,7 +86,6 @@ namespace ShareKnowledgeAPI.Tests
             var response = await _client.PostAsync("/api/Post", httpContent);
 
             // Assert
-
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.Created);
         }
 
@@ -109,8 +104,7 @@ namespace ShareKnowledgeAPI.Tests
             // Act
             var response = await _client.PostAsync("/api/Post", httpContent);
 
-            // Assert
-
+            // Asserts
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
         }
 
@@ -206,7 +200,6 @@ namespace ShareKnowledgeAPI.Tests
         [Fact]
         public async Task DeletePost_ForNoExistPost_ReturnsNotFound()
         {
-
             //Act
             var response = await _client.DeleteAsync($"api/Post/-1");
 

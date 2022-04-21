@@ -12,6 +12,7 @@ namespace ShareKnowledgeAPI.Mapper
             CreateMap<Post, PostDto>();
             CreateMap<CreatePostDto, Post>();
             CreateMap<UpdatePostDto, PostDto>();
+            CreateMap<PostDto, Post>();
                
 
             //Comment profiles
