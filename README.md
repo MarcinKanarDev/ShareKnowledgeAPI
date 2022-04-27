@@ -9,7 +9,7 @@ without unnecessary posts about private and entertainment life.
 
 # Technologies and features
 
-* C# 10
+* C#
 * ASP.NET CORE 6
 * Entity Framework Core
 * AutoMapper
